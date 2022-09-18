@@ -1,4 +1,4 @@
-import 'package:clean_architecture_project/common/common/usecase.dart';
+import 'package:clean_architecture_project/core/usecases/usecase.dart';
 import 'package:clean_architecture_project/domain/entities/number_trivia.dart';
 import 'package:clean_architecture_project/domain/repositories/number_trivia_repository.dart';
 import 'package:clean_architecture_project/domain/usecases/get_random_number_trivia.dart';
@@ -18,23 +18,26 @@ void main() {
 
   const testNumberTrivia = NumberTrivia(text: 'text', number: 1);
 
-  test('should get trivia from the repository', () async {
-    when(
-      mockNumberTriviaRepository.getRandomNumberTrivia(),
-    ).thenAnswer(
-      (_) async => const Right(testNumberTrivia),
-    );
+  test(
+    'should get trivia from the repository',
+    () async {
+      when(
+        mockNumberTriviaRepository.getRandomNumberTrivia(),
+      ).thenAnswer(
+        (_) async => const Right(testNumberTrivia),
+      );
 
-    final result = await usecase(
-      NoParams(),
-    );
+      final result = await usecase(
+        NoParams(),
+      );
 
-    expect(
-      result,
-      const Right(testNumberTrivia),
-    );
-    verify(
-      mockNumberTriviaRepository.getRandomNumberTrivia(),
-    );
-  });
+      expect(
+        result,
+        const Right(testNumberTrivia),
+      );
+      verify(
+        mockNumberTriviaRepository.getRandomNumberTrivia(),
+      );
+    },
+  );
 }

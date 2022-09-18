@@ -8,3 +8,11 @@ abstract class Failure extends Equatable {
   @override
   List<Object> get props => [message];
 }
+
+class ServerFailure extends Failure {
+  const ServerFailure({required super.message});
+}
+
+class CacheFailure extends Failure {
+  const CacheFailure({required super.message});
+}
